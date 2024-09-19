@@ -27,6 +27,14 @@ console.log(score)
 
 console.log(lblMessage.innerText)
 /// GAME LOGIC ///
+
+
+function almostCorrect (guess) {
+    if (guess== correctNumber +- 2 || guess == correctNumber - 2) {
+        lblMessage.innerText = "You are close!"
+        bdy.style.backgroundColor= "yellow"
+    }
+}
 function  gameLogic() {
 
 const guess = inpGuess.value
@@ -37,10 +45,12 @@ if (guess ==correctNumber) {
 } else if (guess> correctNumber) {
     console.log(guess)
     lblMessage.innerText = "too high";
+    almostCorrect(guess)
     decreaseScore()
 } else if (guess < correctNumber) {
     console.log(guess)
     lblMessage.innerText = "too low";
+    almostCorrect(guess)
    decreaseScore()
 }
 }
@@ -76,7 +86,10 @@ function decreaseScore() {
         score--;
         scoreDisplay.innerText = score;
     } else {
-        score--;
+        score--
+        if (score < 0) {
+            score = 0;
+        }
         scoreDisplay.innerText = score;
         lblMessage.innerText = "Game Over! No more guesses left.";
         bdy.style.backgroundColor = "red";
@@ -93,7 +106,7 @@ function checkIfEven() {
     }
 }
 
-
+//////////////////// EVENTS ///////////////////////
 
 pbAgain.addEventListener('click', playAgain)
 pbCheck.addEventListener('click', gameLogic)
