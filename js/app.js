@@ -107,6 +107,25 @@ function checkIfEven() {
 }
 
 //////////////////// EVENTS ///////////////////////
+inpGuess.addEventListener('keydown', function (e) {
+    if (e.key === "Enter") {
+        gameLogic();
+    }
+});
+
+
+document.addEventListener('keydown', function (e) {
+    if (e.key== "s") {
+       lblNumber.innerText = correctNumber
+    }
+});
+
+document.addEventListener('keyup', function (e) {
+    if (e.key== "s") {
+        lblNumber.innerText = "?"
+    }
+
+});
 
 pbAgain.addEventListener('click', playAgain)
 pbCheck.addEventListener('click', gameLogic)
